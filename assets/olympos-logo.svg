@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 112" role="img" aria-labelledby="title description">
+  <title id="title">Olympos L2</title>
+  <desc id="description">Emblema geométrico dourado e lettering clássico Olympos L2, com a assinatura Freya por High Five.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f1d9aa"/>
+      <stop offset=".52" stop-color="#c8a568"/>
+      <stop offset="1" stop-color="#f0d49c"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#gold)" stroke-width="1.45">
+    <path d="M49 5 89 27v47L49 97 9 74V27L49 5Z"/>
+    <path d="m49 14 32 18v37L49 87 17 69V32l32-18Z" opacity=".72"/>
+    <path d="M49 21v61M31 31l36 42m0-42L31 73"/>
+    <path d="M100 22v58" stroke-width=".8" opacity=".52"/>
+  </g>
+  <text x="119" y="68" fill="#eee9df" font-family="Cinzel, Georgia, serif" font-size="55" font-weight="400" letter-spacing="5.5">OLYMPOS</text>
+  <text x="431" y="72" fill="url(#gold)" font-family="Cinzel, Georgia, serif" font-size="34" font-weight="400" letter-spacing=".5">L2</text>
+  <path d="m493 27-5 10v35m13-46 5 10v36m-20 4 8 11 9-11" fill="none" stroke="url(#gold)" stroke-width="1.15" opacity=".88"/>
+  <path d="M120 81h295" fill="none" stroke="url(#gold)" stroke-width=".7" opacity=".5"/>
+  <text x="121" y="100" fill="#b9a783" font-family="Manrope, Arial, sans-serif" font-size="9" font-weight="600" letter-spacing="3.2">FREYA  ×  HIGH FIVE</text>
+</svg>
