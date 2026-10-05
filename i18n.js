@@ -47,7 +47,16 @@ const selected = new URLSearchParams(location.search).get("lang");
 const saved = localStorage.getItem("olympos-language");
 const browserLanguage = navigator.language.toLowerCase();
 const browserDefault = browserLanguage.startsWith("en") ? "en" : browserLanguage.startsWith("es") ? "es" : "pt-BR";
-let current = locales.includes(selected) ? selected : locales.includes(saved) ? saved : browserDefault;
+const visitorCountry = document.querySelector('meta[name="olympos-visitor-country"]')?.content ?? "";
+const spanishSpeakingCountries = new Set([
+  "AR", "BO", "CL", "CO", "CR", "CU", "DO", "EC", "ES", "GQ", "GT", "HN", "MX", "NI", "PA", "PE", "PR", "PY", "SV", "UY", "VE",
+]);
+const countryDefault = visitorCountry === "BR" || visitorCountry === "PT"
+  ? "pt-BR"
+  : spanishSpeakingCountries.has(visitorCountry)
+    ? "es"
+    : "en";
+let current = locales.includes(selected) ? selected : locales.includes(saved) ? saved : visitorCountry ? countryDefault : browserDefault;
 const originalText = new WeakMap();
 const originalAttributes = new WeakMap();
 Object.assign(messages, {
