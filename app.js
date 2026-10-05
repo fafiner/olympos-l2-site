@@ -1,14 +1,17 @@
 import { demoData } from "./data/demo-data.js";
 import { createGameApi } from "./api.js";
+import { t, getLocale } from "./i18n.js";
 
 // Fonte de dados central: a Home usa a demonstração até existir uma API de produção.
 // A implementação da API está isolada em api.js e segue o mesmo contrato dos dados abaixo.
 const api = window.OLYMPOS_API_URL ? createGameApi({ baseUrl: window.OLYMPOS_API_URL }) : null;
 const source = demoData.source;
-const fmt = new Intl.NumberFormat("pt-BR");
+const fmt = () => new Intl.NumberFormat(getLocale());
 let rankingClasses = demoData.rankingsByClass;
 let activeRankingCategory = "pvp";
 let activeRankingClass = "all";
+let latestData = demoData;
+let bossInterval;
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
@@ -21,7 +24,7 @@ function renderClassRankings() {
   if (!select || !body) return;
 
   const availableClasses = Array.isArray(rankingClasses) ? rankingClasses : [];
-  select.innerHTML = '<option value="all">Todas as classes</option>' + availableClasses.map((entry) =>
+  select.innerHTML = `<option value="all">${t("Todas as classes")}</option>` + availableClasses.map((entry) =>
     `<option value="${escapeHtml(entry.id)}">${escapeHtml(entry.name)}</option>`).join("");
   if (activeRankingClass !== "all" && !availableClasses.some((entry) => entry.id === activeRankingClass)) {
     activeRankingClass = "all";
@@ -40,14 +43,14 @@ function renderClassRankings() {
   body.innerHTML = rows.length ? rows.map((row) => `
     <tr><td><span class="class-rank-position">${String(row.position).padStart(2, "0")}</span></td>
       <td class="class-rank-player">${escapeHtml(row.name)}</td><td>${escapeHtml(row.className)}</td><td>${escapeHtml(row.clan)}</td>
-      <td class="class-rank-score">${fmt.format(row.score)}</td></tr>`).join("")
-    : '<tr><td class="ranking-empty" colspan="5">Ainda não há resultados nesta classificação.</td></tr>';
+      <td class="class-rank-score">${fmt().format(row.score)}</td></tr>`).join("")
+    : `<tr><td class="ranking-empty" colspan="5">${t("Ainda não há resultados nesta classificação.")}</td></tr>`;
 
-  const labels = { pvp: "PONTOS PvP", pk: "PONTOS PK", olympiad: "PONTOS OLYMPIAD" };
+  const labels = { pvp: t("PONTOS PvP"), pk: t("PONTOS PK"), olympiad: t("PONTOS OLYMPIAD") };
   $("#ranking-score-heading").textContent = labels[activeRankingCategory];
   $("#ranking-scope").textContent = activeRankingClass === "all"
-    ? "Um líder por classe"
-    : `Top 3 — ${selectedClasses[0]?.name ?? "classe"}`;
+    ? t("Um líder por classe")
+    : `Top 3 — ${selectedClasses[0]?.name ?? t("CLASSE")}`;
 }
 
 document.querySelectorAll("[data-ranking-tab]").forEach((tab) => tab.addEventListener("click", () => {
@@ -65,36 +68,40 @@ $("#ranking-class")?.addEventListener("change", (event) => {
 });
 
 function applyHomeData(data) {
+  latestData = data;
   rankingClasses = data.rankingsByClass ?? demoData.rankingsByClass;
   renderClassRankings();
-  const status = data.server.status === "online" ? "Online" : "Manutenção";
-  $("#server-status").textContent = status;
-  $("#players-online").textContent = fmt.format(data.server.playersOnline);
+  const locale = getLocale();
+  const numberFormat = new Intl.NumberFormat(locale);
+  const status = data.server.status === "online" ? "Online" : t("Manutenção");
+  $("#server-status").textContent = t(status);
+  $("#players-online").textContent = numberFormat.format(data.server.playersOnline);
   const siegeDate = new Date(data.server.nextSiegeAt);
   const dateOptions = { weekday: "short", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" };
-  $("#next-siege").textContent = siegeDate.toLocaleString("pt-BR", dateOptions).replace(".", "");
-  $("#siege-detail-date").textContent = siegeDate.toLocaleString("pt-BR", { weekday: "long", day: "2-digit", month: "long", hour: "2-digit", minute: "2-digit" });
+  $("#next-siege").textContent = siegeDate.toLocaleString(locale, dateOptions).replace(".", "");
+  $("#siege-detail-date").textContent = siegeDate.toLocaleString(locale, { weekday: "long", day: "2-digit", month: "long", hour: "2-digit", minute: "2-digit" });
 
   $("#pvp-list").innerHTML = data.pvpLeaders.map((leader, index) => `
     <div class="rank-row"><span class="rank-number">${String(index + 1).padStart(2, "0")}</span>
       <span class="rank-avatar ${["", "rank-alt", "rank-third"][index] ?? ""}">${leader.name.slice(0, 1)}</span>
       <span class="rank-name">${leader.name}<small>${leader.className} · ${leader.clan}</small></span>
-      <strong>${fmt.format(leader.pvpCount)} <small>FIGHTS</small></strong>
+      <strong>${numberFormat.format(leader.pvpCount)} <small>${t("FIGHTS")}</small></strong>
     </div>`).join("");
   $("#boss-name").textContent = data.epicBoss.name;
-  $("#boss-caption").textContent = data.epicBoss.caption;
-  $("#boss-state").textContent = data.epicBoss.state.toUpperCase();
+  $("#boss-caption").textContent = t(data.epicBoss.caption);
+  $("#boss-state").textContent = t(data.epicBoss.state).toUpperCase();
   renderCountdown(new Date(data.epicBoss.nextSpawnAt));
-  window.setInterval(() => renderCountdown(new Date(data.epicBoss.nextSpawnAt)), 1000);
+  window.clearInterval(bossInterval);
+  bossInterval = window.setInterval(() => renderCountdown(new Date(data.epicBoss.nextSpawnAt)), 1000);
 
   $("#event-list").innerHTML = data.events.map((event) => `
-    <div class="event-row"><span class="event-date">${event.day}<small>${event.month}</small></span>
-      <span class="event-name">${event.name}<small>${event.detail}</small></span><span class="event-time">${event.time}</span>
+    <div class="event-row"><span class="event-date">${event.day}<small>${t(event.month)}</small></span>
+      <span class="event-name">${t(event.name)}<small>${t(event.detail)}</small></span><span class="event-time">${event.time}</span>
     </div>`).join("");
   $("#news-grid").innerHTML = data.news.map((item) => `
     <article class="news-card"><div class="news-art" aria-hidden="true"><img class="parallax-image" src="${item.image}" alt=""></div>
-      <div class="news-meta"><span>${item.category}</span><span>·</span><span>${item.date}</span></div>
-      <h3>${item.title}</h3><span class="news-read">Ler crônica <span>↗</span></span>
+      <div class="news-meta"><span>${t(item.category)}</span><span>·</span><span>${item.date}</span></div>
+      <h3>${t(item.title)}</h3><span class="news-read">${t("Ler crônica ")}<span>↗</span></span>
     </article>`).join("");
 
   document.querySelectorAll(".demo-tag").forEach((tag) => {
@@ -108,7 +115,7 @@ function renderCountdown(target) {
   const hours = Math.floor(remaining / 3600); remaining %= 3600;
   const minutes = Math.floor(remaining / 60); const seconds = remaining % 60;
   const values = [days, hours, minutes, seconds].map((value) => String(value).padStart(2, "0"));
-  $("#boss-countdown").innerHTML = values.map((value, index) => `<span><b>${value}</b><i>${["DIAS", "HORAS", "MIN", "SEG"][index]}</i></span>`).join("");
+  $("#boss-countdown").innerHTML = values.map((value, index) => `<span><b>${value}</b><i>${t(["DIAS", "HORAS", "MIN", "SEG"][index])}</i></span>`).join("");
 }
 
 // Instante único do lançamento, comunicado em UTC para todos os países.
@@ -121,7 +128,7 @@ function renderLaunchCountdown() {
   const hours = Math.floor(remaining / 3600); remaining %= 3600;
   const minutes = Math.floor(remaining / 60); const seconds = remaining % 60;
   const values = [days, hours, minutes, seconds].map((value) => String(value).padStart(2, "0"));
-  timer.innerHTML = values.map((value, index) => `<span><b>${value}</b><i>${["DIAS", "HORAS", "MIN", "SEG"][index]}</i></span>`).join("");
+  timer.innerHTML = values.map((value, index) => `<span><b>${value}</b><i>${t(["DIAS", "HORAS", "MIN", "SEG"][index])}</i></span>`).join("");
 }
 renderLaunchCountdown();
 window.setInterval(renderLaunchCountdown, 1000);
@@ -154,14 +161,15 @@ const openInfo = (title, copy) => {
   $("#modal-copy").textContent = copy;
   modal.showModal();
 };
-$("#register-button").addEventListener("click", () => openInfo("A conta será criada dentro do jogo.", "Olympos L2 usará criação automática de contas pelo cliente do jogo. Não será necessário preencher um cadastro no site. O cliente e as instruções de acesso serão divulgados junto com as informações oficiais de lançamento."));
+$("#register-button").addEventListener("click", () => openInfo(t("A conta será criada dentro do jogo."), t("Olympos L2 usará criação automática de contas pelo cliente do jogo. Não será necessário preencher um cadastro no site. O cliente e as instruções de acesso serão divulgados junto com as informações oficiais de lançamento.")));
 $("#download-button").addEventListener("click", (event) => {
   event.preventDefault();
-  openInfo("O portal do jogo será aberto em breve.", "O cliente e o launcher ainda estão sendo preparados. O botão de download ficará ativo quando os arquivos oficiais estiverem disponíveis.");
+  openInfo(t("O portal do jogo será aberto em breve."), t("O cliente e o launcher ainda estão sendo preparados. O botão de download ficará ativo quando os arquivos oficiais estiverem disponíveis."));
 });
 $(".modal-close").addEventListener("click", () => modal.close());
 $(".modal-confirm").addEventListener("click", () => modal.close());
 modal.addEventListener("click", (event) => { if (event.target === modal) modal.close(); });
+window.addEventListener("olympos:language-change", () => applyHomeData(latestData));
 
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
   if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); }
