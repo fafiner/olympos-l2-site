@@ -21,10 +21,14 @@
 
 /* Supplied transparent Olympos L2 wordmark. */
 .brand{gap:0;flex-shrink:0}
+.site-header{height:120px}
+.site-header .brand{flex-direction:column;align-items:center;justify-content:center;gap:0}
+.brand-freya{display:flex;width:230px;height:35px;align-items:center;justify-content:center;margin-bottom:-2px;overflow:hidden}
+.brand-freya img{display:block;width:108px;height:auto;object-fit:contain;filter:drop-shadow(0 1px 7px rgba(4,15,20,.5))}
 .brand-logo{display:block;width:230px;height:auto}
 .site-footer .brand-logo{width:205px}
-@media(max-width:900px){.brand-logo{width:200px}}
-@media(max-width:620px){.brand-logo{width:186px}.site-footer .brand-logo{width:170px}}
+@media(max-width:900px){.site-header{height:106px}.brand-logo,.brand-freya{width:200px}.brand-freya{height:30px}.brand-freya img{width:94px}.main-nav{gap:22px;font-size:9px}}
+@media(max-width:620px){html{scroll-padding-top:88px}.site-header{height:88px;padding-inline:5%}.brand-logo,.brand-freya{width:164px}.brand-freya{height:26px}.brand-freya img{width:82px}.main-nav{top:87px}.site-footer .brand-logo{width:170px}}
 
 /* Character artwork follows the scroll at a restrained, separate depth. */
 .pillars{position:relative;isolation:isolate}
@@ -222,6 +226,23 @@
 .olympiad-feature-points strong{color:var(--gold-hi)}
 .olympiad-feature-link{margin-top:20px}
 .olympiad-feature-note{margin:10px 0 0;color:#77756f;font-size:8px}
+.olympiad-arenas{margin-top:34px;padding:28px;border:1px solid rgba(215,181,118,.2);background:linear-gradient(135deg,rgba(13,15,20,.94),rgba(8,10,14,.92))}
+.olympiad-arenas-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:19px}
+.olympiad-arenas-heading .eyebrow{margin:0 0 8px}
+.olympiad-arenas-heading h3{margin:0;color:#eee7db;font-family:var(--display);font-size:clamp(23px,2.6vw,34px);font-weight:500}
+.olympiad-arenas-heading h3 em{color:var(--gold-hi);font-weight:400}
+.olympiad-arenas-heading>p{max-width:36ch;margin:0;color:#aaa59c;font-size:10px;line-height:1.7;text-align:right}
+.olympiad-arena-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.olympiad-arena-card{position:relative;min-width:0;margin:0;overflow:hidden;border:1px solid rgba(215,181,118,.2);background:#0a0c10}
+.olympiad-arena-card:after{position:absolute;inset:35% 0 0;content:"";background:linear-gradient(0deg,rgba(5,7,10,.94),transparent);pointer-events:none}
+.olympiad-arena-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform .7s ease,filter .5s ease;filter:brightness(.86) saturate(.88)}
+.olympiad-arena-card:hover img{transform:scale(1.045);filter:brightness(1) saturate(1)}
+.olympiad-arena-card figcaption{position:absolute;z-index:1;right:14px;bottom:13px;left:14px;display:flex;align-items:center;gap:10px;color:#f1e7d3}
+.olympiad-arena-card figcaption span{color:var(--gold-hi);font-family:var(--display);font-size:11px}
+.olympiad-arena-card figcaption strong{font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:.03em}
+.olympiad-arenas-note{margin:13px 0 0;color:#77756f;font-size:8px;letter-spacing:.04em}
+@media(max-width:900px){.olympiad-arenas{padding:22px}.olympiad-arena-gallery{gap:10px}}
+@media(max-width:620px){.olympiad-arenas{margin-top:20px;padding:17px 13px}.olympiad-arenas-heading{align-items:flex-start;flex-direction:column;gap:7px;margin-bottom:13px}.olympiad-arenas-heading>p{text-align:left;font-size:9px}.olympiad-arena-gallery{grid-template-columns:1fr;gap:10px}.olympiad-arena-card img{aspect-ratio:16/9}.olympiad-arena-card figcaption{right:11px;bottom:10px;left:11px}.olympiad-arena-card figcaption strong{font-size:11px}.olympiad-arenas-note{font-size:7px}}
 @media(max-width:900px){.olympiad-feature{grid-template-columns:minmax(230px,.7fr) minmax(0,1.3fr);min-height:520px}.olympiad-feature-art{min-height:520px}.olympiad-feature-content{padding:38px 28px 36px 5px}.olympiad-feature-points{gap:0 14px}}
 @media(max-width:620px){.olympiad-feature{grid-template-columns:1fr;margin-top:18px}.olympiad-feature-art{min-height:360px;height:360px}.olympiad-feature-art img{width:100%;height:100%;object-fit:contain}.olympiad-feature-art:after{inset:14px}.olympiad-feature-content{padding:25px 21px 27px}.olympiad-feature-content h3{font-size:34px}.olympiad-feature-lead{font-size:10px}.olympiad-feature-points{grid-template-columns:1fr;margin-top:16px}.olympiad-feature-points article{padding:12px 0}.olympiad-feature-points h4{font-size:11px}.olympiad-feature-points p{font-size:8px}.olympiad-feature-link{font-size:8px}}
 
