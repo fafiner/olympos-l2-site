@@ -154,7 +154,7 @@ const openInfo = (title, copy) => {
   $("#modal-copy").textContent = copy;
   modal.showModal();
 };
-$("#register-button").addEventListener("click", () => openInfo("A abertura está chegando.", "O cadastro de Olympos L2 será liberado junto com as informações oficiais de abertura. Acompanhe as crônicas para ser avisado."));
+$("#register-button").addEventListener("click", () => openInfo("A conta será criada dentro do jogo.", "Olympos L2 usará criação automática de contas pelo cliente do jogo. Não será necessário preencher um cadastro no site. O cliente e as instruções de acesso serão divulgados junto com as informações oficiais de lançamento."));
 $("#download-button").addEventListener("click", (event) => {
   event.preventDefault();
   openInfo("O portal do jogo será aberto em breve.", "O cliente e o launcher ainda estão sendo preparados. O botão de download ficará ativo quando os arquivos oficiais estiverem disponíveis.");
@@ -166,7 +166,7 @@ modal.addEventListener("click", (event) => { if (event.target === modal) modal.c
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
   if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); }
 }), { threshold: 0.08 });
-document.querySelectorAll(".pillar-card,.arena-card,.siege-panel,.olympiad-card,.events-card,.news-card").forEach((element) => {
+document.querySelectorAll(".pillar-card,.server-rule,.arena-card,.siege-panel,.olympiad-card,.events-card,.news-card").forEach((element) => {
   element.classList.add("reveal"); observer.observe(element);
 });
 
@@ -194,3 +194,4 @@ window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
 window.addEventListener("resize", requestParallaxUpdate);
 reduceMotion.addEventListener?.("change", requestParallaxUpdate);
 updateParallax();
+
