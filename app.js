@@ -1,8 +1,8 @@
 import { demoData } from "./data/demo-data.js";
 import { createGameApi } from "./api.js";
 
-// Fonte de dados central: a Home usa a demonstra��o at� existir uma API de produ��o.
-// A implementa��o da API est� isolada em api.js e segue o mesmo contrato dos dados abaixo.
+// Fonte de dados central: a Home usa a demonstração até existir uma API de produção.
+// A implementação da API está isolada em api.js e segue o mesmo contrato dos dados abaixo.
 const api = window.OLYMPOS_API_URL ? createGameApi({ baseUrl: window.OLYMPOS_API_URL }) : null;
 const source = demoData.source;
 const fmt = new Intl.NumberFormat("pt-BR");
@@ -41,13 +41,13 @@ function renderClassRankings() {
     <tr><td><span class="class-rank-position">${String(row.position).padStart(2, "0")}</span></td>
       <td class="class-rank-player">${escapeHtml(row.name)}</td><td>${escapeHtml(row.className)}</td><td>${escapeHtml(row.clan)}</td>
       <td class="class-rank-score">${fmt.format(row.score)}</td></tr>`).join("")
-    : '<tr><td class="ranking-empty" colspan="5">Ainda n�o h� resultados nesta classifica��o.</td></tr>';
+    : '<tr><td class="ranking-empty" colspan="5">Ainda não há resultados nesta classificação.</td></tr>';
 
   const labels = { pvp: "PONTOS PvP", pk: "PONTOS PK", olympiad: "PONTOS OLYMPIAD" };
   $("#ranking-score-heading").textContent = labels[activeRankingCategory];
   $("#ranking-scope").textContent = activeRankingClass === "all"
-    ? "Um l�der por classe"
-    : `Top 3 - ${selectedClasses[0]?.name ?? "classe"}`;
+    ? "Um líder por classe"
+    : `Top 3 — ${selectedClasses[0]?.name ?? "classe"}`;
 }
 
 document.querySelectorAll("[data-ranking-tab]").forEach((tab) => tab.addEventListener("click", () => {
@@ -67,7 +67,7 @@ $("#ranking-class")?.addEventListener("change", (event) => {
 function applyHomeData(data) {
   rankingClasses = data.rankingsByClass ?? demoData.rankingsByClass;
   renderClassRankings();
-  const status = data.server.status === "online" ? "Online" : "Manuten��o";
+  const status = data.server.status === "online" ? "Online" : "Manutenção";
   $("#server-status").textContent = status;
   $("#players-online").textContent = fmt.format(data.server.playersOnline);
   const siegeDate = new Date(data.server.nextSiegeAt);
@@ -78,7 +78,7 @@ function applyHomeData(data) {
   $("#pvp-list").innerHTML = data.pvpLeaders.map((leader, index) => `
     <div class="rank-row"><span class="rank-number">${String(index + 1).padStart(2, "0")}</span>
       <span class="rank-avatar ${["", "rank-alt", "rank-third"][index] ?? ""}">${leader.name.slice(0, 1)}</span>
-      <span class="rank-name">${leader.name}<small>${leader.className} � ${leader.clan}</small></span>
+      <span class="rank-name">${leader.name}<small>${leader.className} · ${leader.clan}</small></span>
       <strong>${fmt.format(leader.pvpCount)} <small>FIGHTS</small></strong>
     </div>`).join("");
   $("#boss-name").textContent = data.epicBoss.name;
@@ -93,8 +93,8 @@ function applyHomeData(data) {
     </div>`).join("");
   $("#news-grid").innerHTML = data.news.map((item) => `
     <article class="news-card"><div class="news-art" aria-hidden="true"><img class="parallax-image" src="${item.image}" alt=""></div>
-      <div class="news-meta"><span>${item.category}</span><span>�</span><span>${item.date}</span></div>
-      <h3>${item.title}</h3><span class="news-read">Ler cr�nica <span>?</span></span>
+      <div class="news-meta"><span>${item.category}</span><span>·</span><span>${item.date}</span></div>
+      <h3>${item.title}</h3><span class="news-read">Ler crônica <span>↗</span></span>
     </article>`).join("");
 
   document.querySelectorAll(".demo-tag").forEach((tag) => {
@@ -111,7 +111,7 @@ function renderCountdown(target) {
   $("#boss-countdown").innerHTML = values.map((value, index) => `<span><b>${value}</b><i>${["DIAS", "HORAS", "MIN", "SEG"][index]}</i></span>`).join("");
 }
 
-// Instante �nico do lan�amento, comunicado em UTC para todos os pa�ses.
+// Instante único do lançamento, comunicado em UTC para todos os países.
 const launchAt = new Date("2026-11-07T22:00:00Z");
 function renderLaunchCountdown() {
   const timer = $("#launch-timer");
@@ -129,7 +129,7 @@ window.setInterval(renderLaunchCountdown, 1000);
 // API wiring is intentionally opt-in; the preview remains usable with no backend.
 if (api) {
   api.getHome().then(applyHomeData).catch((error) => {
-    console.warn("Olympos API indispon�vel; mostrando dados de demonstra��o.", error);
+    console.warn("Olympos API indisponível; mostrando dados de demonstração.", error);
     applyHomeData(demoData);
   });
 } else {
@@ -154,10 +154,10 @@ const openInfo = (title, copy) => {
   $("#modal-copy").textContent = copy;
   modal.showModal();
 };
-$("#register-button").addEventListener("click", () => openInfo("A conta ser� criada dentro do jogo.", "Olympos L2 usar� cria��o autom�tica de contas pelo cliente do jogo. N�o ser� necess�rio preencher um cadastro no site. O cliente e as instru��es de acesso ser�o divulgados junto com as informa��es oficiais de lan�amento."));
+$("#register-button").addEventListener("click", () => openInfo("A conta será criada dentro do jogo.", "Olympos L2 usará criação automática de contas pelo cliente do jogo. Não será necessário preencher um cadastro no site. O cliente e as instruções de acesso serão divulgados junto com as informações oficiais de lançamento."));
 $("#download-button").addEventListener("click", (event) => {
   event.preventDefault();
-  openInfo("O portal do jogo ser� aberto em breve.", "O cliente e o launcher ainda est�o sendo preparados. O bot�o de download ficar� ativo quando os arquivos oficiais estiverem dispon�veis.");
+  openInfo("O portal do jogo será aberto em breve.", "O cliente e o launcher ainda estão sendo preparados. O botão de download ficará ativo quando os arquivos oficiais estiverem disponíveis.");
 });
 $(".modal-close").addEventListener("click", () => modal.close());
 $(".modal-confirm").addEventListener("click", () => modal.close());
@@ -194,4 +194,3 @@ window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
 window.addEventListener("resize", requestParallaxUpdate);
 reduceMotion.addEventListener?.("change", requestParallaxUpdate);
 updateParallax();
-
