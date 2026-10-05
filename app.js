@@ -98,9 +98,10 @@ function applyHomeData(data) {
     <div class="event-row"><span class="event-date">${event.day}<small>${t(event.month)}</small></span>
       <span class="event-name">${t(event.name)}<small>${t(event.detail)}</small></span><span class="event-time">${event.time}</span>
     </div>`).join("");
+  const monthTranslation = locale === "en" ? "OCT" : locale === "es" ? "OCT" : "OUT";
   $("#news-grid").innerHTML = data.news.map((item) => `
     <article class="news-card"><div class="news-art" aria-hidden="true"><img class="parallax-image" src="${item.image}" alt=""></div>
-      <div class="news-meta"><span>${t(item.category)}</span><span>·</span><span>${item.date}</span></div>
+      <div class="news-meta"><span>${t(item.category)}</span><span>·</span><span>${item.date.replace(/\bOUT\b/g, monthTranslation)}</span></div>
       <h3>${t(item.title)}</h3><span class="news-read">${t("Ler crônica ")}<span>↗</span></span>
     </article>`).join("");
 

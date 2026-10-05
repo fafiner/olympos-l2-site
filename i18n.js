@@ -67,6 +67,11 @@ Object.assign(messages, {
   "Duas eras lendárias. Um mundo próprio.": ["Two legendary eras. One world of our own.", "Dos eras legendarias. Un mundo propio."], "Combate competitivo, equilíbrio pensado para Olympos.": ["Competitive combat, balanced for Olympos.", "Combate competitivo, equilibrio pensado para Olympos."], "Seu equipamento está ao alcance. O poder você conquista.": ["Gear is within reach. Power is earned.", "Tu equipo está a tu alcance. El poder se conquista."],
   "Olympos L2 — início": ["Olympos L2 — home", "Olympos L2 — inicio"], "CLASSE": ["CLASS", "CLASE"], "A conta será criada dentro do jogo.": ["Your account will be created in-game.", "La cuenta se creará dentro del juego."],
   "Como funcionará o processo de apoio": ["How support will work", "Cómo funcionará el apoyo"], "Olympiad": ["Olympiad", "Olympiad"], "Online": ["Online", "En línea"],
+  "02 / APRIMORAMENTO": ["02 / PROGRESSION", "02 / PROGRESIÓN"], "03 / COMPETIÇÃO": ["03 / COMPETITION", "03 / COMPETICIÓN"],
+  "Conquiste enchants jogando — com muito suor e estratégia — ou negocie no jogo usando ouro. O ouro poderá ser adquirido por doações; os valores serão anunciados no lançamento do servidor, em 07/11/2026, às 22:00 UTC.": ["Earn your enchants through hard work and strategy, or trade in-game using gold. Gold may be obtained through donations; prices will be announced at server launch on 07 Nov 2026 at 22:00 UTC.", "Consigue tus enchants con esfuerzo y estrategia, o negocia dentro del juego usando oro. El oro podrá obtenerse mediante donaciones; los precios se anunciarán en el lanzamiento del servidor, el 07/11/2026 a las 22:00 UTC."],
+  "07/11/2026, às 22:00 UTC": ["07 Nov 2026 at 22:00 UTC", "07/11/2026 a las 22:00 UTC"],
+  "A Rainha do Gelo aguarda no templo congelado.": ["The Ice Queen awaits in her frozen temple.", "La Reina de Hielo espera en su templo helado."],
+  "VOLTAR AO TOPO ↑": ["BACK TO TOP ↑", "VOLVER ARRIBA ↑"],
 });
 const ptIndex = new Map(Object.entries(messages).map(([pt, translations]) => [pt.trim(), [pt.trim(), ...translations.map((item) => item.trim())]]));
 
