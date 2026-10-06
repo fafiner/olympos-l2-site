@@ -82,6 +82,7 @@ Object.assign(messages, {
   "A Rainha do Gelo aguarda no templo congelado.": ["The Ice Queen awaits in her frozen temple.", "La Reina de Hielo espera en su templo helado."],
   "VOLTAR AO TOPO ↑": ["BACK TO TOP ↑", "VOLVER ARRIBA ↑"],
 });
+Object.assign(messages, {"Faça parte da primeira batalha.":["Be part of the first battle.","Forma parte de la primera batalla."],"EU VOU JOGAR":["I WILL PLAY","VOY A JUGAR"],"Registre seu nickname e mostre seu interesse.":["Register your nickname and show your interest.","Registra tu nickname y muestra tu interés."],"A PRIMEIRA BATALHA COMEÇA COM VOCÊ":["THE FIRST BATTLE STARTS WITH YOU","LA PRIMERA BATALLA EMPIEZA CONTIGO"],"Eu vou jogar.":["I will play.","Voy a jugar."],"Conte como pretende entrar no mundo de Olympos.":["Tell us how you plan to join Olympos.","Cuéntanos cómo piensas entrar en Olympos."],"Classe que pretende jogar":["Class you plan to play","Clase que piensas jugar"],"Selecione uma classe":["Select a class","Selecciona una clase"],"3 a 16 caracteres: letras, números ou sublinhado.":["3–16 characters: letters, numbers or underscores.","3–16 caracteres: letras, números o guion bajo."],"O que mais te interessa?":["What interests you most?","¿Qué te interesa más?"],"Clã e sieges":["Clan and sieges","Clan y asedios"],"Esta lista mede o interesse pelo projeto. Não cria conta e não reserva nickname no jogo.":["This list measures interest in the project. It does not create an account or reserve an in-game nickname.","Esta lista mide el interés por el proyecto. No crea una cuenta ni reserva un nickname en el juego."],"Autorizo guardar meu nickname, classe e preferências para organizar o lançamento do Olympos L2. Os registros não serão exibidos publicamente.":["I agree to store my nickname, class and preferences to plan the Olympos L2 launch. Records will not be displayed publicly.","Autorizo guardar mi nickname, clase y preferencias para organizar el lanzamiento de Olympos L2. Los registros no se mostrarán públicamente."]});
 const ptIndex = new Map(Object.entries(messages).map(([pt, translations]) => [pt.trim(), [pt.trim(), ...translations.map((item) => item.trim())]]));
 
 export function t(value) {
@@ -142,3 +143,5 @@ document.querySelectorAll("[data-language]").forEach((button) => button.addEvent
 
 export function getLocale() { return current; }
 translateTree();
+
+

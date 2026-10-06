@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./interest.css">
 <meta property="og:type" content="website">
   <meta property="og:site_name" content="Olympos L2">
   <meta property="og:title" content="Olympos L2 — Freya">
@@ -61,6 +62,11 @@
         <p class="launch-countdown-date">07 NOVEMBRO 2026 <span>22:00 UTC</span></p>
         <div class="launch-timer" id="launch-timer" role="timer" aria-label="Tempo até o lançamento">
           <span><b>--</b><i>DIAS</i></span><span><b>--</b><i>HORAS</i></span><span><b>--</b><i>MIN</i></span><span><b>--</b><i>SEG</i></span>
+        </div>
+        <div class="interest-invite">
+          <p>Faça parte da primeira batalha.</p>
+          <button class="interest-cta" id="interest-open" type="button" aria-haspopup="dialog" aria-controls="interest-dialog">EU VOU JOGAR <span aria-hidden="true">↗</span></button>
+          <small>Registre seu nickname e mostre seu interesse.</small>
         </div>
       </div>
       <div class="hero-side-label">FREYA <span>×</span> HIGH FIVE</div>
@@ -194,6 +200,32 @@
   <footer class="site-footer"><a class="brand" href="#top" aria-label="Olympos L2 — início"><img class="brand-logo" src="./assets/olympos-wordmark.png" alt="Olympos L2"></a><span>© 2026 Olympos L2 · Um mundo independente, moldado para a batalha.</span><a href="#top">VOLTAR AO TOPO ↑</a></footer>
 
   <dialog class="modal" id="info-modal"><button class="modal-close" aria-label="Fechar">×</button><span class="modal-mark">Ω</span><p class="eyebrow">A LENDA ESTÁ SENDO FORJADA</p><h2 id="modal-title">Em breve em Olympos.</h2><p id="modal-copy">Estamos preparando este portal para sua jornada. Os detalhes serão anunciados nas crônicas do servidor.</p><button class="button button-gold modal-confirm">Entendido <span>↗</span></button></dialog>
+  <dialog class="interest-dialog" id="interest-dialog" aria-labelledby="interest-title" aria-describedby="interest-description">
+    <button class="interest-close" type="button" aria-label="Fechar">×</button>
+    <p class="eyebrow">A PRIMEIRA BATALHA COMEÇA COM VOCÊ</p>
+    <h2 id="interest-title">Eu vou jogar.</h2>
+    <p id="interest-description">Conte como pretende entrar no mundo de Olympos.</p>
+    <form id="interest-form">
+      <label for="interest-nickname">Nickname</label>
+      <input id="interest-nickname" name="nickname" required minlength="3" maxlength="16" pattern="[A-Za-z0-9_]{3,16}" autocomplete="off" aria-describedby="nickname-help">
+      <small id="nickname-help">3 a 16 caracteres: letras, números ou sublinhado.</small>
+      <label for="interest-class">Classe que pretende jogar</label>
+      <select id="interest-class" name="className" required><option value="">Selecione uma classe</option></select>
+      <fieldset><legend>O que mais te interessa?</legend>
+        <label><input type="checkbox" name="styles" value="pvp"> PvP</label>
+        <label><input type="checkbox" name="styles" value="olympiad"> Olympiad</label>
+        <label><input type="checkbox" name="styles" value="clan"> Clã e sieges</label>
+      </fieldset>
+      <p class="interest-note">Esta lista mede o interesse pelo projeto. Não cria conta e não reserva nickname no jogo.</p>
+      <label class="interest-consent"><input type="checkbox" name="consent" required> <span>Autorizo guardar meu nickname, classe e preferências para organizar o lançamento do Olympos L2. Os registros não serão exibidos publicamente.</span></label>
+      <div class="interest-honey" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <button class="interest-cta" type="submit">Confirmar interesse</button>
+    </form>
+    <p id="interest-status" role="status" aria-live="polite"></p>
+  </dialog>
   <script type="module" src="./app.js"></script>
+  <script type="module" src="./interest.js"></script>
 </body>
 </html>
+
+

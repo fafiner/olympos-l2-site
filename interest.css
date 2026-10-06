@@ -1,0 +1,30 @@
+.interest-invite{margin-top:16px;padding-top:13px;border-top:1px solid #d7b57640;text-align:center}
+.interest-invite p{margin:0 0 9px;color:#eee7da;font-size:12px}
+.interest-cta{display:flex;align-items:center;justify-content:center;gap:18px;width:100%;min-height:48px;padding:13px 18px;border:1px solid #ffe4a7;border-radius:3px;background:linear-gradient(120deg,#e8bf70,#ffe5a7,#d9a950);color:#17110b;font:800 12px/1.4 var(--body);letter-spacing:.1em;cursor:pointer;box-shadow:0 0 24px #e8bf7038;transition:transform .2s,box-shadow .2s}
+.interest-cta:hover{transform:translateY(-2px);box-shadow:0 0 32px #e8bf7060}
+.interest-cta:focus-visible,.interest-close:focus-visible{outline:2px solid white;outline-offset:4px}
+.interest-cta:disabled{opacity:.65;cursor:wait;transform:none}
+.interest-invite small{display:block;margin-top:9px;color:#b9b1a5;font-size:9px;line-height:1.5}
+.interest-dialog{position:fixed;box-sizing:border-box;width:min(520px,calc(100vw - 28px));max-height:calc(100svh - 36px);overflow:auto;margin:auto;padding:32px;border:1px solid #d7b576a0;border-radius:5px;background:#101219;color:#eee7da;box-shadow:0 30px 100px #0009;font-family:var(--body)}
+.interest-dialog::backdrop{background:#03050acc;backdrop-filter:blur(5px)}
+.interest-dialog h2{margin:14px 0 8px;font-family:var(--display);font-size:32px;font-weight:500;color:var(--gold-hi)}
+.interest-dialog>p:not(.eyebrow){font-size:12px;line-height:1.7}
+.interest-close{position:absolute;right:12px;top:9px;padding:5px 9px;border:0;background:transparent;color:#e4d7bd;font-size:28px;cursor:pointer}
+.interest-dialog .eyebrow{max-width:85%;font-size:8px;line-height:1.7}
+#interest-form>label:not(.interest-consent){display:block;margin:17px 0 7px;font-size:12px;font-weight:600}
+#interest-form>input,#interest-form>select{box-sizing:border-box;width:100%;min-height:44px;padding:10px 12px;border:1px solid #57503f;border-radius:3px;background:#0a0c12;color:#eee7da;font:14px var(--body);color-scheme:dark}
+#interest-form>input:focus,#interest-form>select:focus{outline:2px solid var(--gold-hi);outline-offset:1px}
+#nickname-help{display:block;margin-top:6px;color:#aaa398;font-size:10px;line-height:1.5}
+#interest-form fieldset{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;border:0}
+#interest-form legend{margin-bottom:9px;font-size:12px;font-weight:600}
+#interest-form fieldset label{display:flex;align-items:center;gap:7px;min-height:44px;padding:0 11px;border:1px solid #494331;border-radius:3px;font-size:12px;cursor:pointer}
+#interest-form input[type=checkbox]{width:17px;height:17px;accent-color:#e8bf70;flex:none}
+.interest-note{margin:16px 0;color:#b8b1a4;font-size:11px;line-height:1.6}
+.interest-consent{display:flex;align-items:flex-start;gap:8px;margin:17px 0;font-size:10px;line-height:1.7;cursor:pointer}
+.interest-consent input{margin-top:3px}
+.interest-honey{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#interest-status{margin:16px 0 0;color:#f4d59e}
+#interest-status:empty{display:none}
+@media(max-width:620px){.interest-dialog{padding:25px 20px}.interest-dialog h2{font-size:27px}.interest-invite{margin-top:13px}.interest-cta{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.interest-cta{transition:none}.interest-cta:hover{transform:none}}
+
