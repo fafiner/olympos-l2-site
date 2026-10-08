@@ -271,3 +271,20 @@
 @media(max-width:620px){.community-links a:last-child span{display:block;float:none;margin-top:3px;font-size:6px;letter-spacing:0;overflow-wrap:anywhere}}
 /* Compact language selector for the multilingual public site. */
 .site-header{gap:20px}.main-nav{margin-left:auto}.language-switch{display:flex;align-items:center;gap:3px;flex:0 0 auto;padding:4px;border:1px solid rgba(215,181,118,.28);background:rgba(8,10,14,.52)}.language-switch button{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:48px;padding:5px 7px;border:0;background:transparent;color:#aaa7a2;font:700 9px/1 var(--body);letter-spacing:.08em;cursor:pointer}.language-flag{display:block;width:16px;height:11px;border-radius:1px;box-shadow:0 0 0 1px rgba(255,255,255,.24)}.language-switch button:hover,.language-switch button.is-active{color:#090b10;background:var(--gold-hi)}@media(max-width:900px){.site-header{gap:12px}.language-switch{margin-left:auto}.language-switch button{min-width:46px}}@media(max-width:620px){.language-switch{padding:3px}.language-switch button{gap:3px;min-width:42px;padding:5px 5px;font-size:8px}.language-flag{width:14px;height:10px}}
+
+
+/* Responsive vote buttons for the Top L2JBrasil and Hopzone rankings. */
+.vote-banner{width:min(1120px,84%);margin:30px auto 0;padding:21px 27px;display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:19px;border:1px solid rgba(215,181,118,.35);background:linear-gradient(110deg,rgba(39,31,23,.76),rgba(13,16,21,.98) 52%,rgba(17,20,27,.97));box-shadow:0 15px 42px rgba(0,0,0,.22)}
+.vote-banner-mark{width:38px;height:38px;display:grid;place-items:center;border:1px solid rgba(215,181,118,.42);color:var(--gold-hi);font-size:19px;transform:rotate(45deg)}
+.vote-banner-copy .eyebrow{margin:0 0 5px;font-size:8px}
+.vote-banner-copy h2{margin:0;color:#eee7db;font-family:var(--display);font-size:20px;font-weight:500;line-height:1.3}
+.vote-banner-copy h2 em{color:var(--gold-hi);font-weight:400}
+.vote-banner-copy>p:last-child{margin:3px 0 0;color:#aaa7a2;font-size:10px;line-height:1.6}
+.vote-banner-links{display:flex;align-items:stretch;justify-content:center;gap:9px}
+.vote-banner-link{display:flex;align-items:center;justify-content:center;width:146px;min-height:66px;padding:7px 10px;border:1px solid rgba(215,181,118,.34);background:rgba(0,0,0,.25);transition:border-color .2s,transform .2s,background .2s}
+.vote-banner-link:hover{transform:translateY(-2px);border-color:var(--gold-hi);background:rgba(215,181,118,.08)}
+.vote-banner-link:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+.vote-banner-link img{display:block;width:auto;max-width:126px;max-height:76px;height:auto;object-fit:contain}
+.vote-banner-hopzone img{max-width:96px;max-height:82px}
+@media(max-width:900px){.vote-banner{grid-template-columns:36px minmax(0,1fr);gap:15px;padding:19px 22px}.vote-banner-links{grid-column:1/-1;justify-content:flex-end}.vote-banner-link{width:min(48%,190px);min-height:58px}}
+@media(max-width:620px){.vote-banner{width:88%;margin-top:19px;padding:18px 16px;grid-template-columns:30px minmax(0,1fr);gap:11px 13px}.vote-banner-mark{width:28px;height:28px;font-size:14px}.vote-banner-copy .eyebrow{font-size:6px;letter-spacing:.14em}.vote-banner-copy h2{font-size:17px}.vote-banner-copy>p:last-child{font-size:9px}.vote-banner-links{grid-column:1/-1;justify-content:stretch;gap:8px}.vote-banner-link{flex:1;width:auto;min-width:0;min-height:58px;padding:6px}.vote-banner-link img{max-width:100%;max-height:66px}.vote-banner-hopzone img{max-height:70px}}
