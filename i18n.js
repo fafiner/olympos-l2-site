@@ -51,7 +51,8 @@ const messages = {
 
 const locales = ["pt-BR", "en", "es"];
 const selected = new URLSearchParams(location.search).get("lang");
-const saved = localStorage.getItem("olympos-language");
+let saved = null;
+try { saved = localStorage.getItem("olympos-language"); } catch { /* Storage may be disabled by privacy settings. */ }
 const browserLanguage = navigator.language.toLowerCase();
 const browserDefault = browserLanguage.startsWith("en") ? "en" : browserLanguage.startsWith("es") ? "es" : "pt-BR";
 const visitorCountry = document.querySelector('meta[name="olympos-visitor-country"]')?.content ?? "";
@@ -72,6 +73,8 @@ Object.assign(messages, {
   "aguardando": ["awaiting", "en espera"], "Manutenção": ["Maintenance", "Mantenimiento"], "FIGHTS": ["FIGHTS", "COMBATES"], "Ler crônica ": ["Read chronicle ", "Leer crónica "],
   "Monumento de pedra com bustos de guerreiros, símbolo da Olympiad": ["Stone monument with warrior busts, symbol of the Olympiad", "Monumento de piedra con bustos de guerreros, símbolo de la Olympiad"],
   "O mundo": ["World", "El mundo"], "Destaques": ["Features", "Destacados"], "Doações": ["Donations", "Donaciones"], "Notícias": ["News", "Noticias"], "Comunidade": ["Community", "Comunidad"], "Acesso ao jogo": ["Game access", "Acceso al juego"],
+  "Em preparação": ["In preparation", "En preparación"], "EM PREPARAÇÃO": ["IN PREPARATION", "EN PREPARACIÓN"], "A anunciar": ["To be announced", "Por anunciar"], "A agenda será anunciada.": ["The event schedule will be announced.", "La agenda de eventos se anunciará."],
+  "98% do balanceamento segue a experiência retail de Freya; os outros 2% são ajustes próprios necessários para o PvP. Personagens, classes e habilidades inspirados em Freya encontram áreas, Olympiad e conteúdo selecionados de High Five em uma experiência própria.": ["98% of the balance follows the Freya retail experience; the other 2% consists of custom adjustments needed for PvP. Freya-inspired characters, classes and skills meet selected High Five areas, Olympiad and content in a world of our own.", "El 98% del balance sigue la experiencia retail de Freya; el otro 2% son ajustes propios necesarios para el PvP. Personajes, clases y habilidades inspirados en Freya se unen a áreas, Olympiad y contenido seleccionados de High Five en un mundo propio."],
   "CLASSE": ["CLASS", "CLASE"], "Fórum": ["Forum", "Foro"], "Fácil de começar": ["Easy to enter", "Fácil de empezar"],
   "A conta será criada dentro do jogo.": ["Your account will be created in-game.", "La cuenta se creará dentro del juego."],
   "Olympos L2 usará criação automática de contas pelo cliente do jogo. Não será necessário preencher um cadastro no site. O cliente e as instruções de acesso serão divulgados junto com as informações oficiais de lançamento.": ["Olympos L2 will create accounts automatically through the game client. No website registration will be required. The client and access instructions will be shared with the official launch information.", "Olympos L2 creará las cuentas automáticamente desde el cliente del juego. No será necesario registrarse en el sitio web. El cliente y las instrucciones de acceso se publicarán junto con la información oficial del lanzamiento."],
@@ -88,8 +91,27 @@ Object.assign(messages, {
   "07/11/2026, às 22:00 UTC": ["07 Nov 2026 at 22:00 UTC", "07/11/2026 a las 22:00 UTC"],
   "A Rainha do Gelo aguarda no templo congelado.": ["The Ice Queen awaits in her frozen temple.", "La Reina de Hielo espera en su templo helado."],
   "VOLTAR AO TOPO ↑": ["BACK TO TOP ↑", "VOLVER ARRIBA ↑"],
+  "Conta do jogador": ["Player account", "Cuenta del jugador"], "ÁREA DO JOGADOR": ["PLAYER AREA", "ÁREA DEL JUGADOR"],
+  "Proteja sua ": ["Secure your ", "Protege tu "], "conta.": ["account.", "cuenta."],
+  "Altere a senha da sua conta Olympos L2 usando sua senha atual.": ["Change your Olympos L2 account password using your current password.", "Cambia la contraseña de tu cuenta de Olympos L2 usando tu contraseña actual."],
+  "Disponível somente para contas de jogador sem privilégios administrativos.": ["Available only to player accounts without administrative privileges.", "Disponible solo para cuentas de jugador sin privilegios administrativos."],
+  "As senhas são enviadas somente durante a solicitação e não são guardadas pelo site.": ["Passwords are sent only while the request is processed and are not stored by the website.", "Las contraseñas solo se envían mientras se procesa la solicitud y el sitio web no las guarda."],
+  "Login da conta": ["Account login", "Usuario de la cuenta"], "Senha atual": ["Current password", "Contraseña actual"],
+  "Nova senha": ["New password", "Nueva contraseña"], "Confirmar nova senha": ["Confirm new password", "Confirmar nueva contraseña"],
+  "Use de 8 a 64 caracteres. Será solicitada a senha atual antes de salvar.": ["Use 8 to 64 characters. Your current password is required before saving.", "Usa entre 8 y 64 caracteres. Se requiere la contraseña actual antes de guardar."],
+  "Verificando serviço seguro…": ["Checking secure service…", "Comprobando el servicio seguro…"],
+  "Verificando se o serviço de contas está disponível.": ["Checking whether the account service is available.", "Comprobando si el servicio de cuentas está disponible."],
+  "Serviço seguro disponível. Somente contas de jogador sem privilégios podem usar este painel.": ["Secure service available. Only player accounts without privileges can use this panel.", "Servicio seguro disponible. Solo las cuentas de jugador sin privilegios pueden usar este panel."],
+  "O painel está em configuração e ainda não está recebendo senhas.": ["This panel is being configured and is not accepting passwords yet.", "Este panel está en configuración y todavía no recibe contraseñas."],
+  "Serviço de contas indisponível": ["Account service unavailable", "Servicio de cuentas no disponible"], "Alterar senha": ["Change password", "Cambiar contraseña"],
+  "A confirmação não corresponde à nova senha.": ["The confirmation does not match the new password.", "La confirmación no coincide con la nueva contraseña."],
+  "Alterando senha…": ["Changing password…", "Cambiando contraseña…"], "Validando os dados da conta…": ["Validating account details…", "Validando los datos de la cuenta…"],
+  "Senha alterada. Já pode entrar no jogo com a nova senha.": ["Password changed. You can now log in to the game with the new password.", "Contraseña cambiada. Ya puedes iniciar sesión en el juego con la nueva contraseña."],
+  "Muitas tentativas. Aguarde alguns minutos e tente novamente.": ["Too many attempts. Wait a few minutes and try again.", "Demasiados intentos. Espera unos minutos e inténtalo de nuevo."],
+  "Não foi possível alterar. Confira login e senha atual; este painel aceita somente contas de jogador sem privilégios.": ["Could not change the password. Check the account login and current password; this panel only accepts player accounts without privileges.", "No se pudo cambiar la contraseña. Comprueba el usuario y la contraseña actual; este panel solo acepta cuentas de jugador sin privilegios."],
+  "Não foi possível concluir agora. Tente novamente mais tarde.": ["Could not complete the request right now. Try again later.", "No se pudo completar la solicitud ahora. Inténtalo más tarde."],
+  "Não foi possível conectar ao serviço de contas. Tente novamente mais tarde.": ["Could not connect to the account service. Try again later.", "No se pudo conectar con el servicio de cuentas. Inténtalo más tarde."],
 });
-Object.assign(messages, {"Faça parte da primeira batalha.":["Be part of the first battle.","Forma parte de la primera batalla."],"EU VOU JOGAR":["I WILL PLAY","VOY A JUGAR"],"Registre seu nickname e mostre seu interesse.":["Register your nickname and show your interest.","Registra tu nickname y muestra tu interés."],"A PRIMEIRA BATALHA COMEÇA COM VOCÊ":["THE FIRST BATTLE STARTS WITH YOU","LA PRIMERA BATALLA EMPIEZA CONTIGO"],"Eu vou jogar.":["I will play.","Voy a jugar."],"Conte como pretende entrar no mundo de Olympos.":["Tell us how you plan to join Olympos.","Cuéntanos cómo piensas entrar en Olympos."],"Classe que pretende jogar":["Class you plan to play","Clase que piensas jugar"],"Selecione uma classe":["Select a class","Selecciona una clase"],"3 a 16 caracteres: letras, números ou sublinhado.":["3–16 characters: letters, numbers or underscores.","3–16 caracteres: letras, números o guion bajo."],"O que mais te interessa?":["What interests you most?","¿Qué te interesa más?"],"Clã e sieges":["Clan and sieges","Clan y asedios"],"Esta lista mede o interesse pelo projeto. Não cria conta e não reserva nickname no jogo.":["This list measures interest in the project. It does not create an account or reserve an in-game nickname.","Esta lista mide el interés por el proyecto. No crea una cuenta ni reserva un nickname en el juego."],"Autorizo guardar meu nickname, classe e preferências para organizar o lançamento do Olympos L2. Os registros não serão exibidos publicamente.":["I agree to store my nickname, class and preferences to plan the Olympos L2 launch. Records will not be displayed publicly.","Autorizo guardar mi nickname, clase y preferencias para organizar el lanzamiento de Olympos L2. Los registros no se mostrarán públicamente."]});
 const ptIndex = new Map(Object.entries(messages).map(([pt, translations]) => [pt.trim(), [pt.trim(), ...translations.map((item) => item.trim())]]));
 
 export function t(value) {
@@ -140,7 +162,7 @@ function translateTree() {
 
 document.querySelectorAll("[data-language]").forEach((button) => button.addEventListener("click", () => {
   current = button.dataset.language;
-  localStorage.setItem("olympos-language", current);
+  try { localStorage.setItem("olympos-language", current); } catch { /* The URL still preserves the selected language. */ }
   const url = new URL(location.href);
   url.searchParams.set("lang", current);
   history.replaceState(null, "", url);
@@ -150,5 +172,3 @@ document.querySelectorAll("[data-language]").forEach((button) => button.addEvent
 
 export function getLocale() { return current; }
 translateTree();
-
-
