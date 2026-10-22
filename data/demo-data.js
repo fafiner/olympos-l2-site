@@ -6,9 +6,9 @@
 export const demoData = {
   source: "demo",
   server: {
-    status: "online",
-    playersOnline: 284,
-    nextSiegeAt: "2026-10-10T20:00:00+01:00",
+    status: "preview",
+    playersOnline: null,
+    nextSiegeAt: null,
   },
   pvpLeaders: [
     { name: "Valorian", className: "Gladiator", clan: "Heroes", pvpCount: 2481 },
@@ -40,17 +40,13 @@ export const demoData = {
   epicBoss: {
     name: "Freya",
     caption: "A Rainha do Gelo aguarda no templo congelado.",
-    nextSpawnAt: "2026-10-06T19:00:00+01:00",
-    state: "aguardando",
+    nextSpawnAt: null,
+    state: "A anunciar",
   },
-  events: [
-    { day: "05", month: "OUT", name: "Crônicas de Olympos", detail: "Evento comunitário", time: "20:00" },
-    { day: "08", month: "OUT", name: "The Coliseum", detail: "Torneio de PvP", time: "21:00" },
-    { day: "10", month: "OUT", name: "Siege of Olympos", detail: "Castle Siege", time: "20:00" },
-  ],
+  events: [],
   news: [
-    { category: "O PROJETO", date: "04 OUT 2026", title: "Duas eras lendárias. Um mundo próprio.", image: "./assets/elven-chronicles.webp", alt: "Heróis élficos diante de um novo mundo" },
-    { category: "O CAMPO DE BATALHA", date: "04 OUT 2026", title: "Combate competitivo, equilíbrio pensado para Olympos.", image: "./assets/sylvan-chronicle.webp", alt: "Arte clássica de uma heroína élfica" },
-    { category: "A JORNADA", date: "04 OUT 2026", title: "Seu equipamento está ao alcance. O poder você conquista.", image: "./assets/shadow-elf.webp", alt: "Elfa sombria pronta para a batalha" },
+    { category: "O PROJETO", date: "EM PREPARAÇÃO", title: "Duas eras lendárias. Um mundo próprio.", image: "./assets/elven-chronicles.webp", alt: "Heróis élficos diante de um novo mundo" },
+    { category: "O CAMPO DE BATALHA", date: "EM PREPARAÇÃO", title: "Combate competitivo, equilíbrio pensado para Olympos.", image: "./assets/sylvan-chronicle.webp", alt: "Arte clássica de uma heroína élfica" },
+    { category: "A JORNADA", date: "EM PREPARAÇÃO", title: "Seu equipamento está ao alcance. O poder você conquista.", image: "./assets/shadow-elf.webp", alt: "Elfa sombria pronta para a batalha" },
   ],
 };
