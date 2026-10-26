@@ -320,3 +320,36 @@
 .cta-content,.cta-seal{z-index:2}
 @media(max-width:900px){.hero-character-archer{right:-4%;height:min(73vh,620px);max-width:55%;opacity:.88}.pillars-elf{right:-3%;top:2%;height:min(66vh,570px);max-width:58%;opacity:.24}.cta-character-knight{right:0;bottom:-6%;height:min(98%,490px);max-width:48%;opacity:.4}}
 @media(max-width:620px){.hero-character-archer{display:none}.pillars-elf{right:-22%;top:4%;height:min(55vh,440px);max-width:77%;opacity:.15}.cta-character-knight{right:-19%;bottom:-9%;height:88%;max-width:65%;opacity:.22}}
+
+/* PvP and PK rewards preview */
+.combat-rewards{padding:112px 0;border-block:1px solid var(--line)}
+.rewards-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:25px;margin-bottom:34px}
+.rewards-heading h2{font-family:var(--display);font-size:clamp(34px,5vw,58px);font-weight:500;letter-spacing:-.035em;margin:12px 0}
+.rewards-lead{max-width:600px;color:var(--muted);font-size:15px;line-height:1.8;margin:0}
+.rewards-clock{padding:10px 13px;border:1px solid var(--line);color:var(--gold);font-size:9px;letter-spacing:.14em;white-space:nowrap}
+.reward-currency-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.reward-currency-card,.reward-panel{position:relative;background:linear-gradient(145deg,rgba(23,27,35,.97),rgba(12,15,21,.97));border:1px solid var(--line);overflow:hidden}
+.reward-currency-card{min-height:220px;display:flex;align-items:center;gap:22px;padding:28px}
+.reward-currency-card:before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:linear-gradient(transparent,var(--gold),transparent)}
+.currency-art{width:100px;height:100px;flex:0 0 100px;object-fit:contain;filter:drop-shadow(0 8px 22px rgba(0,0,0,.45))}
+.currency-copy{min-width:0}.currency-copy .eyebrow{margin:0 0 7px}
+.currency-copy h3,.reward-panel h3{font-family:var(--display);font-size:25px;font-weight:500;margin:0 0 10px;color:#f0e6d2}
+.currency-copy p:not(.eyebrow){font-size:12px;line-height:1.7;color:var(--muted);margin:6px 0}
+.reward-details-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}
+.reward-panel{padding:29px}.reward-panel h3{font-size:23px;margin:12px 0}
+.reward-panel>p:not(.eyebrow){font-size:12px;line-height:1.75;color:var(--muted);max-width:62ch}
+.reward-podium{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:22px 0 10px}
+.reward-podium div{display:flex;flex-direction:column;align-items:center;padding:15px 8px;background:rgba(218,188,126,.055);border:1px solid rgba(218,188,126,.13)}
+.reward-podium span{font-size:8px;letter-spacing:.12em;color:var(--muted)}
+.reward-podium strong{font-family:var(--display);font-size:33px;font-weight:500;color:var(--gold);line-height:1.2;margin-top:7px}
+.reward-podium small{font-size:9px;color:var(--muted)}
+.ranking-caption{font-size:10px!important;color:var(--gold)!important}
+.reward-rules{padding-left:17px;margin:18px 0 0;color:var(--muted);font-size:10px;line-height:1.75}
+.reward-rules li+li{margin-top:7px}
+.alert-example{margin:15px 0 0;padding:15px 16px;border-left:2px solid #bd5b56;background:rgba(189,91,86,.07)}
+.alert-example span{display:block;font-size:8px;letter-spacing:.16em;color:#d89183;margin-bottom:8px}
+.alert-example strong{font-size:12px;font-weight:500;line-height:1.6;color:#eee2d0}
+.defeat-example{border-color:var(--gold);background:rgba(215,181,118,.055)}.defeat-example span{color:var(--gold)}
+.alert-footnote{font-size:10px!important;margin-top:16px!important}
+@media(max-width:760px){.combat-rewards{padding:78px 0}.rewards-heading{align-items:flex-start;flex-direction:column}.reward-currency-grid,.reward-details-grid{grid-template-columns:1fr}.reward-currency-card{padding:23px;gap:16px;min-height:unset}.currency-art{width:82px;height:82px;flex-basis:82px}.reward-panel{padding:23px}}
+@media(max-width:430px){.reward-currency-card{align-items:flex-start;flex-direction:column;padding:24px}.reward-podium strong{font-size:27px}}
