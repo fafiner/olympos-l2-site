@@ -2,7 +2,7 @@
 
 ## Estado atual
 
-A Home apresenta a futura área de ouro/doações e informa que os preços serão anunciados em 07/11/2026 às 22:00 (Portugal). O checkout está desativado. Não há cobrança, pacote com preço, endpoint de pagamento ou crédito de ouro no site.
+A Home apresenta a futura área de ouro/doações e informa que os preços serão anunciados em 07/12/2026 às 22:00 (Portugal). O checkout está desativado. Não há cobrança, pacote com preço, endpoint de pagamento ou crédito de ouro no site.
 
 ## Arquitetura proposta
 

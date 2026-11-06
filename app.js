@@ -129,7 +129,7 @@ function renderCountdown(target) {
 }
 
 // Instante único do lançamento, comunicado em UTC para todos os países.
-const launchAt = new Date("2026-11-07T22:00:00Z");
+const launchAt = new Date("2026-12-07T22:00:00Z");
 function renderLaunchCountdown() {
   const timer = $("#launch-timer");
   if (!timer) return;
